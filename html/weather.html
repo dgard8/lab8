@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>City Weather</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<form>
+Enter a Utah City: <input type="text" id="cityfield" value=""><br>
+
+Suggestions: <span id="txtHint"> Empty </span>
+<br>
+<input id="button" type="submit" value="Submit">
+</form>
+
+<textarea id="dispcity"> No City</textarea>
+<div id="weather">No Weather</div>
+
+
+<script>
+$("#button").click(function(e) {
+  var value = $("#cityfield").val();
+  $("#dispcity").text(value);
+  var valueNoSpace = value.split(" ").join("_");
+  e.preventDefault();
+  var url = "https://api.wunderground.com/api/e8fdec2711e5e514/conditions/q/UT/";
+  url += valueNoSpace;
+  url += ".json";
+  console.log(url);
+  $.getJSON(url,function(data) {
+   console.log(data);
+   var temp = data.current_observation.temperature_string;
+   var hum = data.current_observation.relative_humidity;
+   var sky = data['current_observation']['weather'];
+   var wind = data['current_observation']['wind_string'];
+   var weather = "Weather in " + value + " is " + sky;
+   weather += "<ul>";
+   weather += "<li> Temperature: " + temp + "</li>";
+   weather += "<li> Humidity: " + hum + "</li>";
+   weather += "<li> Wind: " + wind + "</li>";
+   weather += "</ul>";
+   $("#weather").html(weather);
+  })
+  .error(function(jqXHR, textStatus, errorThrown){
+   console.log("Status " + textStatus);
+   console.log("Content: " + jqXHR.responseText);
+   $("#weather").html("Error. Check city name");
+  });
+});
+
+$("#cityfield").keyup(function () {
+  var url = "http://52.11.78.180/getcity?q=";
+  url += $("#cityfield").val();
+  console.log(url);
+  $.getJSON(url,function(data) {
+   var everything = "<ul>";
+   $.each(data, function(i, item){
+    everything += "<li> " + data[i].city + "</li>";
+   })
+   everything += "</ul>";
+   $("#txtHint").html(everything);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+   $("#txtHint").html("");
+   console.log("Status " + textStatus);
+   console.log("Content: " + jqXHR.responseText);
+  });
+});
+
+</script>
+</body>
+</html>

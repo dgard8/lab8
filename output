@@ -1,0 +1,39 @@
+nohup: ignoring input
+Thu, 19 Mar 2015 20:58:00 GMT body-parser deprecated bodyParser: use individual json/urlencoded middlewares at server.js:17:11
+Thu, 19 Mar 2015 20:58:00 GMT body-parser deprecated undefined extended: provide extended option at node_modules/body-parser/index.js:85:29
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: 'Pr' }
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: '' }
+In getcity route
+{ q: '' }
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: 'Pr' }
+In getcity route
+{ q: 'P' }
+In getcity route
+{ q: 'B' }
+In comment route
+In comment route
+In POST comment route
+{ Name: 'Mickey', Comment: 'Hello' }
+finished post
+Record added as 550b38a462e2b96d48bfa4e9
+In comment route
+In POST comment route
+{ Name: 'Mickey', Comment: 'Hello' }
+finished post
+Record added as 550b38bf62e2b96d48bfa4ea
+In getcity route
+{ q: 'P' }
+In comment route
